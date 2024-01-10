@@ -47,7 +47,7 @@ def index(request):
 
         elif "search" in request.POST:
             query = request.POST.get("searchquery")
-            customers = Customer.objects.filter(Q(name__icontains=query) | Q (email__icontains=query))
+            cards = Cards.objects.filter(Q(front__icontains=query) | Q (back__icontains=query))
 
 
 
