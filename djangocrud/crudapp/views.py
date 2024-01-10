@@ -40,7 +40,7 @@ def index(request):
             print(id)
             print(customer)
 
-            customer.delete
+            customer.delete()
 
             messages.error(request, "Customer has ben DELETED")
 
