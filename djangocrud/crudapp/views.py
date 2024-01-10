@@ -36,9 +36,9 @@ def index(request):
             id = request.POST.get("id")
             customer = Customer.objects.get(id=id)
 
-            print('hi')
-            print(id)
-            print(customer)
+            # print('hi')
+            # print(id)
+            # print(customer)
 
             customer.delete()
 
