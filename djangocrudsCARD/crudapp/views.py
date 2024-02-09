@@ -25,7 +25,6 @@ def index(request):
             id = request.POST.get("id")
             front = request.POST.get("front")
             back = request.POST.get("back")
-
             edit_card = Cards.objects.get(id=id)
             edit_card.front = front
             edit_card.back = back

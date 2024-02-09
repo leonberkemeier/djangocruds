@@ -16,7 +16,7 @@
   <body>
     
     <div class="container mt-5 p-5 border rounded">
-
+      
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-success text-center mb-3">
@@ -27,6 +27,12 @@
 
         <div class="d-flex justify-content-between align-items-center">
             <a href="" data-bs-toggle="modal" data-bs-target="#addCustomerModal" class="btn btn-primary px-3 py-3 btn-sm"> Add new Customer</a>
+
+            <a href="" data-bs-toggle="modal" data-bs-target="#questCustomerModal_{{firstcustomer.id}}" class="btn btn-outline-danger px-4 py-2 btn-sm"> Abfragen <ion-icon name="chevron-up-outline"></ion-icon></a>
+
+            <a href="" data-bs-toggle="modal" data-bs-target="#questrndCustomerModal_{rnd}" class="btn btn-outline-danger px-4 py-2 btn-sm">shuffle <ion-icon name="shuffle-outline"></ion-icon></a>
+
+            <a href="" data-bs-toggle="modal" data-bs-target="#questrndCustomerModal" class="btn btn-outline-warning px-4 py-2 btn-sm">shuffle <ion-icon name="shuffle-outline"></ion-icon></a>
             <div>
                 <form action="" method="post" class="d-flex">
                     {% csrf_token %}
@@ -56,14 +62,22 @@
                     <a href="" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal_{{customer.id}}" class="btn btn-danger btn-sm"><ion-icon name="trash-outline"></ion-icon></a>
                 </td>
               </tr>
+
+            {{rnd}}
+
+            {{rndcustomer.name}}
+
+            {{rndcustomer.id}}
+
+            <!-- {{firstcustomer.id}} -->
               <!-- update Customer modal -->
-              <div class="modal fade" id="editCustomerModal_{{customer.id}}" tabindex="-1" aria-labelledby="editCustomerModalLabel_{{customer.id}}" aria-hidden="true">
+              <div class="modal fade" id="editCustomerModal_{{customer.id}}" tabindex="-1" aria-labelledby="editCustomerModalLabel_{{customer.id}}" aria-hidden="false">
                 <div class="modal-dialog">
                   <form action="" method="post">
                     {% csrf_token %}
                     <div class="modal-content">
                         <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="editCustomerModalLabel_{{id}}">Add new Customer</h1>
+                          <h1 class="modal-title fs-2" id="editCustomerModalLabel_{{id}}">Add new Customer</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -94,7 +108,7 @@
                     <input type="hidden" name="id" value="{{customer.id}}">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <p>You sure aboyt that?</p>
+                            <p>You sure about that?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">nvm</button>
@@ -135,6 +149,109 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   <button type="submit" class="btn btn-primary" name="add">Add Customer</button>
+                </div>
+              </div>
+          </form>
+        </div>
+      </div>
+    
+
+      <!-- quest first modal -->
+      <div class="modal fade" id="questCustomerModal_{{firstcustomer.id}}" tabindex="-1" aria-labelledby="questCustomerModalLabel_{{firstcustomer.id}}" aria-hidden="true">
+        <div class="modal-dialog">
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="editCustomerModalLabel">Quest the Project</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <input type="hidden" name="id" value="{{firstcustomer.id}}">
+                  <div class="">
+                    <label for="name">Customer Name</label>
+                    <input type="text" name="name" class="form-control" value="{{firstcustomer.name}}" id="name" required>
+                  </div>
+                  <br>
+                  <div class="">
+                    <label for="name">Customer Email</label>
+                    <input type="email" name="email" class="form-control" value="{{firstcustomer.email}}" id="email" required>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-around">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><ion-icon name="chevron-back-outline"></ion-icon></button>
+                  <button type="submit" class="btn btn-primary" name="edit">Edit</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><ion-icon name="shuffle-outline"></ion-icon></button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+                  
+                </div>
+              </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- quest rnd modal -->
+      <div class="modal fade" id="questrndCustomerModal_{{rnd}}" tabindex="-1" aria-labelledby="questrndCustomerModalLabel_{{rnd}}" aria-hidden="true">
+        <div class="modal-dialog">
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="editCustomerModalLabel">Quest the Project</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <input type="hidden" name="id" value="{{rndcustomer.id}}">
+                  <div class="">
+                    <label for="name">Customer Name</label>
+                    <input type="text" name="name" class="form-control" value="{{rndcustomer.name}}" id="name" required>
+                  </div>
+                  <br>
+                  <div class="">
+                    <label for="name">Customer Email</label>
+                    <input type="email" name="email" class="form-control" value="{{rndcustomer.email}}" id="email" required>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-around">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><ion-icon name="chevron-back-outline"></ion-icon></button>
+                  <button type="submit" class="btn btn-primary" name="edit">Edit</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><ion-icon name="shuffle-outline"></ion-icon></button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+                  
+                </div>
+              </div>
+          </form>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="questrndCustomerModal" tabindex="-1" aria-labelledby="questrndCustomerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="editCustomerModalLabel">Quest the Project</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <input type="hidden" name="id" value="{{rndcustomer.id}}">
+                  <div class="">
+                    <label for="name">Customer Name</label>
+                    <input type="text" name="name" class="form-control" value="{{rndcustomer.name}}" id="name" required>
+                  </div>
+                  <br>
+                  <div class="">
+                    <label for="name">Customer Email</label>
+                    <input type="email" name="email" class="form-control" value="{{rndcustomer.email}}" id="email" required>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-around">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><ion-icon name="chevron-back-outline"></ion-icon></button>
+                  <button type="submit" class="btn btn-primary" name="edit">Edit</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><ion-icon name="shuffle-outline"></ion-icon></button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><ion-icon name="chevron-forward-outline"></ion-icon></button>
+                  <a href="" data-bs-toggle="modal" data-bs-target="#questrndCustomerModal_{rnd}" class="btn btn-outline-danger px-4 py-2 btn-sm">shuffle <ion-icon name="shuffle-outline"></ion-icon></a>
                 </div>
               </div>
           </form>

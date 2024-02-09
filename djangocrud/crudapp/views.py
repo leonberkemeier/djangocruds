@@ -2,11 +2,21 @@ from django.shortcuts import render
 from .models import Customer
 from django.contrib import messages
 from django.db.models import Q
+import random
 
 # Create your views here.
 
 def index(request):
     customers = Customer.objects.all()
+    firstcustomer = Customer.objects.order_by("id").first()
+    lastcustomer = Customer.objects.order_by("id").last()
+    
+    a = 3
+    b = 26
+    
+    rnd = random.randint(a, b)
+
+    rndcustomer = Customer.objects.get(id=rnd)
     query=""
 
     if request.method == "POST":
@@ -36,10 +46,6 @@ def index(request):
             id = request.POST.get("id")
             customer = Customer.objects.get(id=id)
 
-            # print('hi')
-            # print(id)
-            # print(customer)
-
             customer.delete()
 
             messages.error(request, "Customer has ben DELETED")
@@ -50,5 +56,14 @@ def index(request):
 
 
 
-    context = {"customers": customers, "query":query}
+
+
+    context = {
+            "customers": customers, 
+            "query":query,
+            "firstcustomer":firstcustomer,
+            "lastcustomer":lastcustomer,
+            "rnd": rnd,
+            "rndcustomer": rndcustomer,
+               }
     return render(request, "index.html", context=context)
