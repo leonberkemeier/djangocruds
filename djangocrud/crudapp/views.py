@@ -11,12 +11,15 @@ def index(request):
     firstcustomer = Customer.objects.order_by("id").first()
     lastcustomer = Customer.objects.order_by("id").last()
     
+    # fc = Customer.objects.get(id=id).pk
+    
     a = 3
     b = 26
     
-    rnd = random.randint(a, b)
+    # rnd = random.randint(a, b)
+    
 
-    rndcustomer = Customer.objects.get(id=rnd)
+    # rndcustomer = Customer.objects.get(id=rnd)
     query=""
 
     if request.method == "POST":
@@ -63,7 +66,12 @@ def index(request):
             "query":query,
             "firstcustomer":firstcustomer,
             "lastcustomer":lastcustomer,
-            "rnd": rnd,
-            "rndcustomer": rndcustomer,
+            # "rnd": rnd,
+            # "rndcustomer": rndcustomer,
+            # "fc": fc,
                }
     return render(request, "index.html", context=context)
+
+
+def test(request):
+    return render(request, "test.html")
