@@ -1,0 +1,19 @@
+<div class="modalcontent" id="modalcontent">
+    <div class="modalhead">
+      <h1>heaaad</h1>
+    </div>
+    <div class="modalbody">
+      <h1>body</h1>
+      {{fc.name}}
+      {{fc.email}}
+      {{fc.id}}
+    </div>
+    <div class="footer">
+      <h1>footer</h1>
+       <a class="block mr-2 hover:text-gray-600"
+        hx-get="{% url 'rendertpl' %}"
+        
+        hx-target="#modalcontent"
+        hx-swap="outerHTML"><button class="btn-danger">schuffle</button></a>
+    </div>
+  </div>

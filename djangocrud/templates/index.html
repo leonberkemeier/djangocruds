@@ -281,22 +281,23 @@
         </div>
       </div>
 
+
       <div class="modal2" id="quest">
-        <div class="modalcontent">
-          <div class="modalhead">
-            <h1>head</h1>
-          </div>
-          <div class="modalbody">
-            <h1>body</h1>
-            {{fc.name}}
-            {{fc.email}}
-          </div>
-          <div class="footer">
-            <h1>footer</h1>
-             <button class="btn-danger"><a href="/">rnd</a></button>
-          </div>
-        </div>
+        <h1>modal</h1>
+        {% include "modal.html" %}
+       
+        
       </div>
+    <!-- hx rendern -->
+    <script src="https://unpkg.com/htmx.org@1.1.0"></script>
+    <script>
+      document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+      })
+    </script>
+
+
+
     <script src="{% static 'js/script.js' %}"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 

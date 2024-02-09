@@ -77,5 +77,29 @@ def index(request):
     return render(request, "index.html", context=context)
 
 
+
+def rendertpl(request):
+    rc = randomCustomer()
+    context = {
+        "fc":rc,
+    }
+    return render(request, 'modal.html',context=context)
+
+def randomCustomer():
+    
+    countcustomers = Customer.objects.count()
+    a = 0
+    b = countcustomers-1
+    
+    rnd = random.randint(a, b)
+    
+    rndcustomer = Customer.objects.order_by("id").all()[rnd:rnd+1]
+
+    fc = rndcustomer[0]
+
+    return fc
+
+
+
 def test(request):
     return render(request, "test.html")
