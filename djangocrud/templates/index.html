@@ -35,11 +35,11 @@
 
 
             <button class="btn btn-secondary"> <ion-icon name="shuffle-outline"></ion-icon></button>
-            <!-- <a href="" data-bs-toggle="modal" data-bs-target="#questCustomerModal_{{firstcustomer.id}}" class="btn btn-outline-danger px-4 py-2 btn-sm"> Abfragen <ion-icon name="chevron-up-outline"></ion-icon></a> -->
+            <a href="" data-bs-toggle="modal" data-bs-target="#questCustomerModal_{{firstcustomer.id}}" class="btn btn-outline-danger px-4 py-2 btn-sm"> Abfragen <ion-icon name="chevron-up-outline"></ion-icon></a>
 
-            <!-- <a href="" data-bs-toggle="modal" data-bs-target="#questrndCustomerModal_{rnd}" class="btn btn-outline-danger px-4 py-2 btn-sm">shuffle <ion-icon name="shuffle-outline"></ion-icon></a> -->
+            <a href="" data-bs-toggle="modal" data-bs-target="#questrndCustomerModal_{rnd}" class="btn btn-outline-danger px-4 py-2 btn-sm">shuffle <ion-icon name="shuffle-outline"></ion-icon></a>
 
-            <!-- <a href="" data-bs-toggle="modal" data-bs-target="#questrndCustomerModal" class="btn btn-outline-warning px-4 py-2 btn-sm">shuffle <ion-icon name="shuffle-outline"></ion-icon></a> -->
+            <a href="" data-bs-toggle="modal" data-bs-target="#questrndCustomerModal" class="btn btn-outline-warning px-4 py-2 btn-sm">shuffle <ion-icon name="shuffle-outline"></ion-icon></a>
             <div>
                 <form action="" method="post" class="d-flex">
                     {% csrf_token %}
@@ -51,7 +51,21 @@
 
         <table class="table mt-3 table-bordered table-hover">
             <thead>
-              <tr>
+              <td>{{customer.id}}</td>
+              <td>{{customer.name}}</td>
+              <td>{{customer.email}}</td>
+              <td>
+                  <a href="" data-bs-toggle="modal" data-bs-target="#editCustomerModal_{{customer.id}}" class="btn btn-success btn-sm"><ion-icon name="create-outline"></ion-icon></a>
+                  <a href="" data-bs-toggle="modal" data-bs-target="#deleteCustomerModal_{{customer.id}}" class="btn btn-danger btn-sm"><ion-icon name="trash-outline"></ion-icon></a>
+              </td>
+            </tr>
+
+          <!-- {{rnd}} -->
+          <!-- {{firstcustomer.name}} -->
+          <!-- {{fc.name}} -->
+
+          <!-- {{rndcustomer.name}} -->
+<tr>
                 <th scope="col">ID</th>
                 <th scope="col">Customer Name</th>
                 <th scope="col">Customer Email</th>
@@ -74,7 +88,7 @@
             <!-- {{firstcustomer.name}} -->
             <!-- {{fc}} -->
 
-            <!-- {{rndcustomer.name}} -->
+            <!-- {{rndcustomer}} -->
 
             <!-- {{rndcustomer.id}} -->
 
@@ -274,9 +288,12 @@
           </div>
           <div class="modalbody">
             <h1>body</h1>
+            {{fc.name}}
+            {{fc.email}}
           </div>
           <div class="footer">
             <h1>footer</h1>
+             <button class="btn-danger"><a href="/">rnd</a></button>
           </div>
         </div>
       </div>
