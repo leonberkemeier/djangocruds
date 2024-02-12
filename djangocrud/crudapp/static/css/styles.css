@@ -36,3 +36,7 @@ body{
     -webkit-backdrop-filter: blur(13px);
     border: 1px solid rgba(190, 142, 241, 0.9);
 }
+
+.modal-hidden{
+    left: -20%;
+}

@@ -1,6 +1,9 @@
+{% load static %}
+
 <div class="modalcontent" id="modalcontent">
     <div class="modalhead">
       <h1>heaaad</h1>
+      <button onclick="removeModal()">x</button>
     </div>
     <div class="modalbody">
       <h1>body</h1>
@@ -17,3 +20,5 @@
         hx-swap="outerHTML"><button class="btn-danger">schuffle</button></a>
     </div>
   </div>
+
+  <script src="{% static 'js/script.js' %}"></script>

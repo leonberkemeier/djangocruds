@@ -9,7 +9,8 @@
     
 </head>
 <body>
-    
+    <!-- <a href=""><button>openmodal</button></a> -->
+    <button onclick="openModal()">openmodal </button>
     <div class="container mt-5 p-5 border rounded">
       
         {% if messages %}
@@ -123,7 +124,7 @@
 
     </div>
 
-    <!-- <div class="modal2">
+    <div id="modal" onclick="removeModal()" class="modal2 modal-hidden">
       <div class="modalhead">
           <h1>head</h1>
           <button class="modalexitbtn" type="button">x</button>
@@ -134,7 +135,7 @@
       <div class="modalfooter">
           <h1>footer</h1>
       </div>
-  </div> -->
+  </div>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> 
