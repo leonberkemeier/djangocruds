@@ -8,19 +8,20 @@ import random
 
 def index(request):
     customers = Customer.objects.all()
-    firstcustomer = Customer.objects.order_by("id").first()
-    lastcustomer = Customer.objects.order_by("id").last()
+    questioncustomer = Customer.objects.order_by("id").first()
+    # firstcustomer = Customer.objects.order_by("id").first()
+    # lastcustomer = Customer.objects.order_by("id").last()
     
-    # fc = Customer.objects.get(id=id).pk
-    countcustomers = Customer.objects.count()
-    a = 0
-    b = countcustomers-1
+    # # fc = Customer.objects.get(id=id).pk
+    # countcustomers = Customer.objects.count()
+    # a = 0
+    # b = countcustomers-1
     
-    rnd = random.randint(a, b)
+    # rnd = random.randint(a, b)
     
-    rndcustomer = Customer.objects.order_by("id").all()[rnd:rnd+1]
+    # rndcustomer = Customer.objects.order_by("id").all()[rnd:rnd+1]
 
-    fc = rndcustomer[0]
+    # fc = rndcustomer[0]
 
 
     query=""
@@ -67,21 +68,24 @@ def index(request):
     context = {
             "customers": customers, 
             "query":query,
-            "firstcustomer":firstcustomer,
-            "lastcustomer":lastcustomer,
-            "rnd": rnd,
-            "rndcustomer": rndcustomer,
-            "coutcustomer":countcustomers,
-            "fc": fc,
+            "questioncustomer":questioncustomer,
+            # "firstcustomer":firstcustomer,
+            # "lastcustomer":lastcustomer,
+            # "rnd": rnd,
+            # "rndcustomer": rndcustomer,
+            # "coutcustomer":countcustomers,
+            # "fc": fc,
                }
     return render(request, "index.html", context=context)
 
 
 
-def rendertpl(request):
-    rc = randomCustomer()
+def renderrndtpl(request):
+    questioncustomer = randomCustomer()
+    # nc = nextCustomer()
     context = {
-        "fc":rc,
+        "questioncustomer":questioncustomer,
+        # "nc":nc,
     }
     return render(request, 'modal.html',context=context)
 
@@ -99,6 +103,82 @@ def randomCustomer():
 
     return fc
 
+def rendernexttpl(request):
+    questioncustomer = nextCustomer(request)
+    context={
+        'questioncustomer': questioncustomer,
+    }
+    print(context)
+    return render(request, 'modal.html',context=context)
+
+def nextCustomer(request):
+    # customers=Customer.objects.all()
+    # allcustomers = Customer.objects.all()
+    # # questioncustomer=None
+    # try:
+
+    #     after=request.GET.get('after', None)
+    #     # not NONE
+    #     if after is not None:
+    #         questioncustomer=Customer.objects.filter(id__gt=after).order_by('id')[0]
+    #         print('After is not NONE')
+    #     # IS NONE
+    #     else:
+    #         questioncustomer=Customer.objects.order_by('id')[0]
+    #         print("After is NONE")
+    
+    # except IndexError:
+    #     if len(allcustomers) > 0:
+    #         questioncustomer=allcustomers[0]
+    # except ValueError:
+    #     if len(allcustomers) > 0:
+    #         questioncustomer=allcustomers[0]
+    
+
+    # nc = questioncustomer
+    # context ={
+    #     'questioncustomer':questioncustomer,
+    #     'allcustomers':allcustomers,
+    # # }
+
+
+
+
+    allcustomers = Customer.objects.all()
+
+    try:
+         
+        after=request.GET.get('after', None)
+        before=request.GET.get('before', None)
+        both=after and before
+        if after is not None:
+            print('notnone')
+            questioncustomer=allcustomers.filter(id__gt=after).order_by('id')[0]
+        elif before is not None:
+            print('notnone')
+            questioncustomer=allcustomers.filter(id__lt=before).order_by('-id')[0]
+        # elif both:
+        #     questioncard=Card.ozbjects.filter(id__gt=after).order_by('id')[0]
+        else:
+            print("stillnone")
+            questioncustomer=allcustomers.order_by('id')[0]
+    
+    except IndexError:
+        if len(allcustomers) > 0:
+            questioncustomer=allcustomers[0]
+    except ValueError:
+        if len(allcustomers) > 0:
+            questioncustomer=allcustomers[0]
+        
+    return questioncustomer
+
+# def renderprevtpl(request):
+#     pc = nextCustomer()
+
+#     context={
+#         'pc':pc,
+#     }
+#     return render(request, 'modal.html',context=context)
 
 
 def test(request):

@@ -1,6 +1,6 @@
 :root{
-    --modal-width: 300px;
-    --modal-height: 400px;
+    --modal-width: 80vw;
+    --modal-height: 70vh;
     --modal-color: green;
 }
 
@@ -24,7 +24,7 @@ body{
     height: var(--modal-height);
     color: white;
     background-color: var(--modal-color);
-    padding: 50px;
+    padding: 10px;
     border-radius: 15px;
     box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
     z-index: 10;
@@ -38,5 +38,33 @@ body{
 }
 
 .modal-hidden{
-    left: -20%;
+    left: -100%;
+}
+
+.modalcontent{
+    background-color: green ;
+    height: 100%;
+    border-radius: 5px;
+}
+.modalhead{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  height: 10%;
+}
+.modalbody{
+    width: 100%;
+    border-bottom: 1px solid black;
+    height: 80%;
+}
+.modalfooter{
+    height: 10%;
+}
+.quitmodalbtn{
+    margin: 5px;
+    height: 30px;
+    width: 30px;
+    color: black;
+    background-color: red;
+    border-radius: 50%;
 }

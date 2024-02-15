@@ -1,23 +1,67 @@
 {% load static %}
 
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+   
 <div class="modalcontent" id="modalcontent">
     <div class="modalhead">
-      <h1>heaaad</h1>
-      <button onclick="removeModal()">x</button>
+      
+      {{questioncustomer.id}}
+      <button class="quitmodalbtn" onclick="removeModal()">x</button>
     </div>
     <div class="modalbody">
-      <h1>body</h1>
-      {{fc.name}}
-      {{fc.email}}
-      {{fc.id}}
+      <div id="frontcard">
+        {% if questioncustomer.name %}
+        <!-- <img src="{{questioncard.front.url}}" class="modal-picsize" alt="{{questioncard.title}}">
+         -->
+         <h1>{{questioncustomer.name}}</h1>
+         
+        {% endif %}
+        </div>
+        
+        <div id="backcard">
+        {% if questioncustomer.email %}
+
+        <!-- <img src="{{questioncard.back.url}}" class="modal-picsize" alt="{{questioncard.title}}"> -->
+        <h1>{{questioncustomer.email}}</h1>
+        
+        {% endif %}
+        </div>
     </div>
     <div class="footer">
-      <h1>footer</h1>
-       <a class="block mr-2 hover:text-gray-600"
-        hx-get="{% url 'rendertpl' %}"
+      
+    
+      <button id="backbtn" onclick="changeOpacity()">backside</button>
+      <a class="block mr-2 hover:text-gray-600"
+      hx-get="/rendernexttpl?before={{questioncustomer.id}}"
+      
+      hx-target="#modalcontent"
+      hx-swap="outerHTML">
+      <button class="btn-danger">
+        previous
+      </button>
+    </a>
+      <a class="block mr-2 hover:text-gray-600"
+        hx-get="{% url 'renderrndtpl' %}"
         
         hx-target="#modalcontent"
-        hx-swap="outerHTML"><button class="btn-danger">schuffle</button></a>
+        hx-swap="outerHTML">
+        <button class="btn-danger">
+          schuffle
+        </button>
+      </a>
+
+      <a class="block mr-2 hover:text-gray-600"
+        hx-get="/rendernexttpl?after={{questioncustomer.id}}"
+        
+        hx-target="#modalcontent"
+        hx-swap="outerHTML">
+        <button class="btn-danger">
+          nexthx
+        </button>
+      </a>
+      
+      
+       
     </div>
   </div>
 
